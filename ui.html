@@ -1,0 +1,177 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css"> 
+
+
+<style>
+  body{
+    padding: 2em;
+  }
+
+  input{
+    display: block;
+  }
+  button{
+    color: white;
+    background-color: #1677ff;
+    box-shadow: 0 2px 0 rgba(5,145,255,.1);
+    font-size: 14px;
+    height: 32px;
+    padding: 4px 15px;
+    border: 1px solid #1677ff ;
+    border-radius: 6px;
+    margin: 10px;
+  }
+  .looping{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+  }
+  .component{
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid grey;
+  }
+  input{
+    width: 100%;
+    border-radius: 6px;
+  }
+  .hide{
+    display: none;
+  }
+
+
+
+
+
+
+  </style>
+<h1>Certificate Generator</h1>
+
+<div class="numberofp">
+  <label for="number">Number of Certificates</label>
+  <input class="input__field" type="text" placeholder="eg: 5" id="number">
+  <button id="start">Start</button>
+</div>
+
+<div class="looping">
+
+</div>
+<div>
+  <button class="hide" id="generate">Generate</button>
+  <button class="hide" id="cancel">Cancel</button>
+ 
+
+</div>
+
+<script>
+
+document.getElementById('start').addEventListener('click', () => {
+            document.getElementById('generate').classList.remove("hide")
+            document.getElementById('cancel').classList.remove("hide")
+            const numComponents = parseInt(document.getElementById('number').value, 10);
+
+            if (!isNaN(numComponents) && numComponents > 0) {
+                const loopingContainer = document.querySelector('.looping');
+                
+                for (let i = 0; i < numComponents; i++) {
+                    const component = document.createElement('div');
+                    component.className = 'component';
+                    
+                    const nameLabel = document.createElement('label');
+                    nameLabel.textContent = 'Name';
+                    const nameInput = document.createElement('input');
+                    nameInput.className = 'input__field';
+                    nameInput.type = 'text';
+                    nameInput.placeholder = 'eg: Mark Zuckerberg';
+                    nameInput.id = `name-${i}`;
+                    
+                    const positionLabel = document.createElement('label');
+                    positionLabel.textContent = 'Position';
+                    const positionInput = document.createElement('input');
+                    positionInput.className = 'input__field';
+                    positionInput.type = 'text';
+                    positionInput.placeholder = 'eg: Fourth';
+                    positionInput.id = `position-${i}`;
+                    
+                    const eventLabel = document.createElement('label');
+                    eventLabel.textContent = 'Event';
+                    const eventInput = document.createElement('input');
+                    eventInput.className = 'input__field';
+                    eventInput.type = 'text';
+                    eventInput.placeholder = 'eg: frog Jump';
+                    eventInput.id = `event-${i}`;
+                    
+                    const organisationLabel = document.createElement('label');
+                    organisationLabel.textContent = 'Organisation';
+                    const organisationInput = document.createElement('input');
+                    organisationInput.value= "Tinkerhub"
+                    organisationInput.className = 'input__field';
+                    organisationInput.type = 'text';
+                    organisationInput.placeholder = 'eg: Tinkerhub';
+                    organisationInput.id = `organisation-${i}`;
+                    
+                    component.appendChild(nameLabel);
+                    component.appendChild(nameInput);
+                    component.appendChild(positionLabel);
+                    component.appendChild(positionInput);
+                    component.appendChild(eventLabel);
+                    component.appendChild(eventInput);
+                    component.appendChild(organisationLabel);
+                    component.appendChild(organisationInput);
+                    
+                    loopingContainer.appendChild(component);
+                }
+            }
+        })
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({pluginMessage:{type:'cancel'}}, '*');
+}
+document.getElementById('generate').onclick = () => {
+  // Get the number of components
+  const numComponents = parseInt(document.getElementById('number').value, 10);
+
+  if (!isNaN(numComponents) && numComponents > 0) {
+    const data = [];
+
+    for (let i = 0; i < numComponents; i++) {
+      const name = document.getElementById(`name-${i}`).value;
+      const position = document.getElementById(`position-${i}`).value;
+      const event = document.getElementById(`event-${i}`).value;
+      const organisation = document.getElementById(`organisation-${i}`).value;
+
+      data.push({
+        name,
+        position,
+        event,
+        organisation
+      });
+    }
+    console.log(data);
+   
+    parent.postMessage({
+      pluginMessage: {
+        type: 'generate',
+        data
+      },
+    }, '*');
+  }
+};
+
+
+
+
+
+
+for (let i = 1; i <= 10; i++) {
+            // Create a new element (e.g., <p>) and set its contnt
+            const newElement = document.createElement('p');
+            newElement.textContent = `Element ${i}`;
+
+            // Append the new element to the container
+            container.appendChild(newElement);
+        }
+
+
+</script>
