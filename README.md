@@ -6,11 +6,12 @@ This is a Figma plugin that generates bulk certificates using the data given by 
 ## Team members
 1. [Chackochan Sebastian](https://github.com/Chackoseb)
 2. [Catherine Jose](https://github.com/cath0806)
-## Link to product walkthrough
-[link to video](Link Here)
-## How it Works ?
-1. Explaining the working of project
-2. Embed video of project demo
+## Product walkthrough
+
+
+https://github.com/cath0806/figma-plugin-hacknight/assets/96349137/64bd4e68-9f50-4a6c-82c3-a7b92f4dd458
+
+
 ## Libraries used
 * Typescript
 * NPM
