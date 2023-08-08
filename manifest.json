@@ -1,0 +1,17 @@
+{
+  "name": "Sheet-Data-Certificate-Generator",
+  "id": "1270660519605181457",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html",
+  "networkAccess": {
+    "allowedDomains": [
+      "https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/"
+    ]
+  }
+}
